@@ -1,0 +1,12 @@
+[Unit]
+Description=Deepin io optimize
+After=network-manager.service local-fs.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/deepinop.sh 
+
+
+[Install]
+WantedBy=multi-user.target
