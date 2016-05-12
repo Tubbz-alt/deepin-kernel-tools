@@ -1,0 +1,14 @@
+[Unit]
+Description=Turn discrete graphics off
+Requires=sys-kernel-debug.mount
+After=sys-kernel-debug.mount network-manager.service
+Before=lightdm.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/vgaswitcheroo_start.sh
+ExecStop=/usr/sbin/vgaswitcheroo_stop.sh
+
+[Install]
+WantedBy=multi-user.target
