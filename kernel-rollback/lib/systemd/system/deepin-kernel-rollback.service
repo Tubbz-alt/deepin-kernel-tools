@@ -1,0 +1,12 @@
+[Unit]
+Description=Rollback kernel if new kernel fails
+Requires=sys-kernel-debug.mount
+After=lightdm.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=no
+ExecStart=/usr/sbin/deepin-kernel-rollback.sh
+
+[Install]
+WantedBy=graphical.target

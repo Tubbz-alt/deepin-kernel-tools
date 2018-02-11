@@ -1,0 +1,15 @@
+#! /bin/bash
+set -e
+
+. /etc/default/grub
+
+if [ "x${GRUB_DISABLE_RECOVERY}" != "xtrue" ]; then
+	grub-set-default '1>2'
+else
+	grub-set-default '1>1'
+fi
+
+old_kernel=$(md5sum /boot/vmlinuz-$(uname -r) | awk //'{print $1}')
+grub-editenv - set oldkernel=${old_kernel}
+grub-editenv - set next_entry='0'
+systemctl enable deepin-kernel-rollback

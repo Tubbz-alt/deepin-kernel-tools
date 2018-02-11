@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -e
+
+grub-set-default '0'
